@@ -3,6 +3,10 @@
 
 # Getting started
 
+installation
+
+`$ go get github.com/revh/go-sssgenerator/...`
+
 To create a new site write the following command
 
 `$ go-sssgenerator init mynewblog`
@@ -21,16 +25,17 @@ mynewblog/
 Put some frontmatter markdown in the posts directory
 Put some html file in the templates directory
 
-run the buid command
+Run the buid command
 
 `$ cd mynewblog`
 
 `$ go-sssgenerator build`
 
-if it works you should have the generated files in mynewblog directory
+If it works you should have the generated files in mynewblog directory
 
-for a working example check https://github.com/revh/revh.github.io
+For a working example check https://github.com/revh/revh.github.io
 
 # Warning
+
 This program is only intended as a study project
 
