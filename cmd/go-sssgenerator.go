@@ -24,9 +24,17 @@ func main() {
 
 	switch os.Args[1] {
 	case "init":
+		if len(os.Args) < 3 {
+			fmt.Println("a project name is required")
+			os.Exit(1)
+		}
 		initCmd(os.Args[2])
 	case "build":
-		buildCmd(os.Args[2])
+		dirname := "."
+		if len(os.Args) >= 3 {
+			dirname = os.Args[2]
+		}
+		buildCmd(dirname)
 	default:
 		os.Exit(1)
 	}
@@ -34,13 +42,15 @@ func main() {
 
 func initCmd(dirname string) {
 	fmt.Printf("INIT CMD dirname: %s\n", dirname)
+
 	os.MkdirAll(path.Join(dirname, "src", "posts"), os.ModePerm)
 	os.MkdirAll(path.Join(dirname, "src", "templates"), os.ModePerm)
-	ioutil.WriteFile(path.Join(dirname, ".ssgenerator"), ssgeneratorTpl, os.ModePerm)
+	ioutil.WriteFile(path.Join(dirname, ".sssgenerator"), ssgeneratorTpl, os.ModePerm)
 }
 
 func buildCmd(dirname string) {
 	fmt.Printf("BUILD CMD dirname: %s\n", dirname)
+
 	config := utils.ReadConfig(path.Join(dirname, ".sssgenerator"))
 
 	generator.CollectTemplats(config.TemplatesDir)

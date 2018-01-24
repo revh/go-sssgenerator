@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"path"
 	"path/filepath"
@@ -33,8 +32,6 @@ func ReadConfig(filename string) *Config {
 	config.PostsDir = path.Join(base, config.PostsDir)
 	config.TemplatesDir = path.Join(base, config.TemplatesDir)
 	config.OutputDir = path.Join(base, config.OutputDir)
-
-	fmt.Println(config.PostsDir)
 
 	return config
 }

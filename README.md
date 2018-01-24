@@ -25,7 +25,7 @@ run the buid command
 
 `$ cd mynewblog`
 
-`$ go-sssgenerator init mynewblog`
+`$ go-sssgenerator build`
 
 if it works you should have the generated files in mynewblog directory
 
