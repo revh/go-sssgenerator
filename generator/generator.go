@@ -10,10 +10,10 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/revh/go-sssgenerator/utils"
+
 	blackfriday "gopkg.in/russross/blackfriday.v2"
 )
-
-import "../utils"
 
 var templates map[string]*template.Template
 var htmlExtension = ".html"

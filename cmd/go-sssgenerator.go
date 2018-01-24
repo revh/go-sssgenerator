@@ -6,8 +6,8 @@ import (
 	"os"
 	"path"
 
-	"../generator"
-	"../utils"
+	"github.com/revh/go-sssgenerator/generator"
+	"github.com/revh/go-sssgenerator/utils"
 )
 
 var ssgeneratorTpl = []byte(`{
