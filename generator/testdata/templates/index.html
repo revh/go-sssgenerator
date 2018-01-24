@@ -1,0 +1,8 @@
+<h1>Index</h1>
+
+<p>Related:</p>
+<ul>
+{{range $post := .Related}}
+    <li><a href="{{$post.FileName}}">{{$post.Meta.Title}}</a></li>
+{{end}}
+</ul>
