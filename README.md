@@ -3,11 +3,11 @@
 
 # Getting started
 
-To create a new site write the follow command
+To create a new site write the following command
 
 `$ go-sssgenerator init mynewblog`
 
-you should have a new directory three as this
+You should have a new directory tree like this
 
 ```
 $ tree mynewblog/ -a
@@ -29,7 +29,7 @@ run the buid command
 
 if it works you should have the generated files in mynewblog directory
 
-for an example check https://github.com/revh/revh.github.io
+for a working example check https://github.com/revh/revh.github.io
 
 # Warning
 This program is only intened as a study project
