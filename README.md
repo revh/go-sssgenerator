@@ -32,5 +32,5 @@ if it works you should have the generated files in mynewblog directory
 for a working example check https://github.com/revh/revh.github.io
 
 # Warning
-This program is only intened as a study project
+This program is only intended as a study project
 
