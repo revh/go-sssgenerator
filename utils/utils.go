@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-// Config is the type for convert .sssgenerator configs
+// Config is the type for map a .sssgenerator file
 type Config struct {
 	BaseDirName  string
 	PostsDir     string `json:"posts"`
@@ -43,7 +43,7 @@ func ReadConfig(filename string) *Config {
 	return config
 }
 
-// CollectFiles scans a directory and return a list of file of the given extension
+// CollectFiles scans a directory and return a list of files for the given extension name
 func CollectFiles(dirname string, extension string) []string {
 	files, err := filepath.Glob(path.Join(dirname, "/*"))
 	if err != nil {

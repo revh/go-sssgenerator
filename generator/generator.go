@@ -28,7 +28,7 @@ func Templates() map[string]*template.Template {
 // Post is the type of the post
 // it contains some required information, metas and the content of the file
 // in the content of the file, special variable can be used to access these properties
-// ex: {{.FileName}} output the FileName prop, and Meta.MyProp output a custom prop declared
+// ex: {{.FileName}} outputs the FileName prop, and {{.Meta.MyProp}} outputs a custom prop declared
 // directly in the file
 type Post struct {
 	FilePath string
@@ -38,11 +38,11 @@ type Post struct {
 	Meta     map[string]string
 
 	// Index is a special flag, the field Related
-	// will be filled with all other posts
+	// will be filled with all other post objs
 	Index   bool
 	Related []*Post
 
-	// Status move the file in a "status" directory
+	// Status moves the file in a "status" directory
 	// ex. outputdir/state/filename
 	Status    string
 	OutputDir string
@@ -161,9 +161,15 @@ func ReadPost(filepath string) *Post {
 // WritePost generates the html file for the given post
 func WritePost(post *Post, dirname string) {
 	tmpl := templates[post.Template]
+
+	// the file will be written on the "output/post.status/post.filename" directory
 	outPath := path.Join(dirname, post.Status, post.FileName)
 
-	os.MkdirAll(filepath.Dir(outPath), os.ModePerm)
+	// create all the needed directory
+	err := os.MkdirAll(filepath.Dir(outPath), os.ModePerm)
+	if err != nil {
+		panic(err)
+	}
 
 	f, err := os.Create(outPath)
 	if err != nil {
@@ -176,6 +182,7 @@ func WritePost(post *Post, dirname string) {
 		panic(err)
 	}
 
+	// ensure the commit of the file
 	w.Flush()
 	f.Sync()
 }
