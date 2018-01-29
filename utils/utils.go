@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 )
 
+// Config is the type for convert .sssgenerator configs
 type Config struct {
 	BaseDirName  string
 	PostsDir     string `json:"posts"`
@@ -14,18 +15,24 @@ type Config struct {
 	OutputDir    string `json:"output"`
 }
 
+// ReadConfig reads a given filename and convert to a Config obj
+// the paths will be converted to absolute path
 func ReadConfig(filename string) *Config {
 	config := &Config{}
+
+	// read the file
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
 	}
 
+	// convert to a Config obj
 	err = json.Unmarshal(content, &config)
 	if err != nil {
 		panic(err)
 	}
 
+	// convert relative paths to absolute paths
 	abs, _ := filepath.Abs(filename)
 	base := filepath.Dir(abs)
 	config.BaseDirName = base
@@ -36,12 +43,14 @@ func ReadConfig(filename string) *Config {
 	return config
 }
 
+// CollectFiles scans a directory and return a list of file of the given extension
 func CollectFiles(dirname string, extension string) []string {
 	files, err := filepath.Glob(path.Join(dirname, "/*"))
 	if err != nil {
 		panic(err)
 	}
 
+	// iterate over all the file returning only those that match the given extension
 	var selectedFiles []string
 	for _, file := range files {
 		if filepath.Ext(file) == extension {
